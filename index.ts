@@ -26,7 +26,7 @@ class BroadCastClient {
       broadcaster: "pusher",
       key: "app-key",
       forceTLS: false,
-      cluster: 'us2',
+      cluster: "us2",
       encrypted: true,
       disableStats: true,
       authEndpoint: "/api/broadcasting/auth",
