@@ -26,7 +26,7 @@ class BroadCastClient {
       broadcaster: "pusher",
       key: "app-key",
       forceTLS: false,
-      cluster: 'us2',
+      cluster: "us2",
       encrypted: true,
       disableStats: true,
       authEndpoint: "/api/broadcasting/auth",
@@ -54,7 +54,7 @@ export const echo = (options: Options) => {
 }
 
 export const broadcast = () => {
-    if (app.config.globalProperties.$echo != 'undefined') {
+    if (app.config.globalProperties.$echo === undefined) {
       return echo(app.config.globalProperties.$echoOptions)
     }
     return app.config.globalProperties.$echo;
