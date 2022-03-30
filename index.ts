@@ -1,20 +1,20 @@
 import Echo from "laravel-echo";
 import "pusher-js";
+import { createApp } from 'vue';
+const app = createApp({})
 
 interface Options {
-  broadcaster: string;
-  key: string;
-  wsHost: string;
-  wsPort: number;
-  wssPort: number;
-  forceTLS: boolean;
-  encrypted: boolean;
-  disableStats: boolean;
-  enabledTransports: string[];
-  authEndpoint: string;
+  broadcaster: string
+  key: string | boolean | undefined
+  forceTLS: boolean
+  cluster: string | boolean | undefined
+  encrypted: string | boolean | undefined
+  disableStats: boolean
+  authEndpoint: string
+  auth: object
 }
 
-class WebSocketClient {
+class BroadCastClient {
   public options: Options;
 
   constructor(options: Options) {
@@ -25,24 +25,37 @@ class WebSocketClient {
     return {
       broadcaster: "pusher",
       key: "app-key",
-      wsHost: "127.0.0.1",
-      wsPort: 6001,
-      wssPort: 6001,
       forceTLS: false,
+      cluster: 'us2',
       encrypted: true,
       disableStats: true,
-      enabledTransports: ["ws", "wss"],
       authEndpoint: "/api/broadcasting/auth",
+      auth: {}
     };
   }
 
   connect() {
-    return new Echo(this.options);
+    try {
+        console.log('[echo] connecting...')
+        const process = new Echo(this.options)
+        process.join('auth')
+        console.log('[echo] connected')
+        return process;
+    } catch(error) {
+        console.log(`[echo] ${error}`)
+    }
   }
 }
 
-export default {
-  install: (app: any, options: Options) => {
-    app.config.globalProperties.$echo = new WebSocketClient(options).connect();
-  },
-};
+export const echo = (options: Options) => {
+    app.config.globalProperties.$echo = new BroadCastClient(options).connect()
+    app.config.globalProperties.$echoOptions = options
+    return app.config.globalProperties.$echo
+}
+
+export const broadcast = () => {
+    if (app.config.globalProperties.$echo != 'undefined') {
+      return echo(app.config.globalProperties.$echoOptions)
+    }
+    return app.config.globalProperties.$echo;
+}
