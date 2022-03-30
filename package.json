@@ -1,12 +1,23 @@
 {
   "name": "vue3-echo-client",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Mark Heramis",
+  "author": {
+    "name": "Mark Heramis",
+    "email": "mark@wendyourway.com"
+  },
+  "contributors": [
+    {
+      "name": "Carlomar",
+      "email": "carlomar@wendyourway.com"
+    }
+  ],
+  "repository": "github:markheramis/vue3-echo-client",
+  "bugs": "https://github.com/markheramis/vue3-echo-client/issues",
   "license": "ISC",
   "dependencies": {
     "laravel-echo": "^1.11.4",

@@ -1,11 +1,10 @@
-# Vue3 echo Client
+# Vue3 Echo Client
 
 > Plugin for laravel echo
 
 ```sh
 $ npm -v && node -v
-6.14.13
-v14.17.3
+14.17.3
 ```
 
 ## Installation
