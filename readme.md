@@ -104,3 +104,4 @@ export default defineComponent({
 ## Authors
 
 - [Mark Heramis](https://github.com/markheramis)
+- [Carlomar Espinosa](https://github.com/carlomar-espinosa)
