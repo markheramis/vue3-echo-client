@@ -1,0 +1,23 @@
+name: "release"
+on:
+  push:
+    branches:
+      - master
+jobs:
+  releasee:
+    name: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2.1.1
+        
+
+      - name: node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '10.x'
+          registry-url: https://registry.npmjs.org
+      - run: yarn install
+      - run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
