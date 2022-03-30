@@ -54,7 +54,7 @@ export const echo = (options: Options) => {
 }
 
 export const broadcast = () => {
-    if (app.config.globalProperties.$echo != 'undefined') {
+    if (app.config.globalProperties.$echo === undefined) {
       return echo(app.config.globalProperties.$echoOptions)
     }
     return app.config.globalProperties.$echo;
