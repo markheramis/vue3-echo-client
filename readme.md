@@ -1,6 +1,6 @@
 # Vue3 Echo Client
 
-> Plugin for laravel echo
+Plugin for laravel echo compatible for Vue3
 
 ```sh
 $ npm -v && node -v
