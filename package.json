@@ -1,6 +1,6 @@
 {
   "name": "vue3-echo-client",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Plugin for laravel echo compatible for Vue3",
   "main": "index.ts",
   "scripts": {
